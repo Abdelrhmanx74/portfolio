@@ -1,0 +1,290 @@
+[
+    {
+        "id": "passwordless-auth",
+        "repo": "dabbonet/dipzin-frontend",
+        "ref": "e4a1c1e0b68ff72f219a9822cecb667b69942573",
+        "file": "src/auth.ts",
+        "title": "Passwordless OTP authentication with shaped JWT/session",
+        "description": "Custom NextAuth Credentials provider verifies OTPs, enriches JWT/session with profile fields, and exposes tokens for server actions to streamline secure sign-in. # Dipzin"
+    },
+    {
+        "id": "desktop-navigator",
+        "repo": "dabbonet/dipzin-frontend",
+        "ref": "e4a1c1e0b68ff72f219a9822cecb667b69942573",
+        "file": "src/app/(explorer)/_components/navigator/src/desktop-navigator-view.tsx",
+        "title": "Animated desktop navigator with query-aware, contextual search",
+        "description": "Built a polished, scalable navigation surface using Framer Motion, pattern-to-API mapping, and query state hooks that surface intelligent suggestions and keep search context in sync across the UI. # Dipzin"
+    },
+    {
+        "id": "metadata-pipeline",
+        "repo": "dabbonet/dipzin-frontend",
+        "ref": "e4a1c1e0b68ff72f219a9822cecb667b69942573",
+        "file": "src/app/(explorer)/_utils/createMetadata.ts",
+        "title": "Dynamic SEO metadata pipeline with domain-driven keywords",
+        "description": "Generates Next.js metadata by fetching domain data and composing keyword-rich titles/descriptions based on platform, pattern, and filters—normalizes queries and guards against bad inputs to boost discoverability. # Dipzin"
+    },
+    {
+        "id": "zip-screens-api",
+        "repo": "dabbonet/dipzin-frontend",
+        "ref": "e4a1c1e0b68ff72f219a9822cecb667b69942573",
+        "file": "src/app/api/zip-screens/route.ts",
+        "title": "Serverless ZIP export API with streaming and proper headers",
+        "description": "Packages selected screens into a ZIP with auth checks, efficient streaming, and correct content-disposition for reliable downloads. # Dipzin"
+    },
+    {
+        "id": "fetch-data-hook",
+        "repo": "dabbonet/dipzin-frontend",
+        "ref": "e4a1c1e0b68ff72f219a9822cecb667b69942573",
+        "file": "src/app/(explorer)/_hooks/useFetchData.tsx",
+        "title": "Domain-smart data fetching with query correction and adaptive pagination",
+        "description": "Normalizes filters (e.g., flows → flowActions), adjusts page size per pattern, and centralizes pagination/suggestions to keep UI logic clean and consistent. # Dipzin"
+    },
+    {
+        "id": "onboarding-flows",
+        "repo": "dabbonet/dipzin-frontend",
+        "ref": "e4a1c1e0b68ff72f219a9822cecb667b69942573",
+        "file": "src/app/(onboarding)/_hooks/usePersonalize.ts",
+        "title": "Multi-step onboarding and personalization with server actions",
+        "description": "Fetches interests with auth, persists selections, updates NextAuth sessions, and manages robust step state for a seamless, tailored first-run experience. # Dipzin"
+    },
+    {
+        "id": "apps-transform",
+        "repo": "dabbonet/dipzin-dashboard-next",
+        "ref": "6b7bc7eef0c029af9c73988d4ced861220af234b",
+        "file": "src/app/(main)/apps-management/_utils/transformData.ts",
+        "title": "Typed adapters: Strapi → normalized, UI-ready domain models",
+        "description": "Transforms raw API responses into typed structures with deterministic platform mapping and nested asset handling, reducing UI complexity and runtime bugs. # Dipzin"
+    },
+    {
+        "id": "app-data-dirty-submit",
+        "repo": "dabbonet/dipzin-dashboard-next",
+        "ref": "6b7bc7eef0c029af9c73988d4ced861220af234b",
+        "file": "src/app/(main)/apps-management/[platform]/[slug]/[id]/app-details/_hooks/useAppData.ts",
+        "title": "Minimal-diff form updates via react-hook-form dirty fields",
+        "description": "Sends only changed fields to the API to cut payload size and side effects, improving performance and reliability of admin operations at scale. # Dipzin"
+    },
+    {
+        "id": "create-app-form",
+        "repo": "dabbonet/dipzin-dashboard-next",
+        "ref": "6b7bc7eef0c029af9c73988d4ced861220af234b",
+        "file": "src/app/(main)/apps-management/_create-app-modal/_componets/app-details-form.tsx",
+        "title": "Create-app form with schema validation and instant feedback",
+        "description": "React Hook Form + Zod validations, sensible defaults, and guardrails to prevent bad submissions and speed up creation. # Dipzin"
+    },
+    {
+        "id": "search-apps",
+        "repo": "dabbonet/dipzin-dashboard-next",
+        "ref": "6b7bc7eef0c029af9c73988d4ced861220af234b",
+        "file": "src/app/(main)/apps-management/_actions/searchApps.ts",
+        "title": "Fresh, precise app search using server actions + Strapi queries",
+        "description": "Combines Next.js server actions, qs-crafted filters, and no-store caching to deliver accurate, up-to-date search results with low latency. # Dipzin"
+    },
+    {
+        "id": "get-apps-action",
+        "repo": "dabbonet/dipzin-dashboard-next",
+        "ref": "dev",
+        "file": "src/app/(main)/apps-management/_actions/getApps.ts",
+        "title": "Server action for typed, fresh app listings",
+        "description": "Centralizes Strapi querying with pagination and no-store hints to deliver always-current admin views with minimal latency. # Dipzin"
+    },
+    {
+        "id": "use-screens",
+        "repo": "dabbonet/dipzin-dashboard-next",
+        "ref": "dev",
+        "file": "src/app/(main)/apps-management/[platform]/[slug]/[id]/screens-management/_hooks/useScreens.ts",
+        "title": "Screens data hook with selective refetch and paging",
+        "description": "Fetches screens by app with stable keys, handles loading/error, and invalidates precisely after mutations. # Dipzin"
+    },
+    {
+        "id": "use-screen",
+        "repo": "dabbonet/dipzin-dashboard-next",
+        "ref": "dev",
+        "file": "src/app/(main)/apps-management/[platform]/[slug]/[id]/screens-management/_screen/_hooks/useScreen.ts",
+        "title": "Single-screen lifecycle hook for edit flows",
+        "description": "Centralizes fetch/update/delete for a screen and emits change events to keep lists and details in sync. # Dipzin"
+    },
+    {
+        "id": "screens-actions",
+        "repo": "dabbonet/dipzin-dashboard-next",
+        "ref": "dev",
+        "file": "src/app/(main)/apps-management/[platform]/[slug]/[id]/screens-management/_components/screens-actions.tsx",
+        "title": "Inline, bulk screen actions with optimistic UX",
+        "description": "Publish, duplicate, and delete with confirmations, permission-aware availability, and fast optimistic updates. # Dipzin"
+    },
+    {
+        "id": "use-app-filters",
+        "repo": "dabbonet/dipzin-dashboard-next",
+        "ref": "6b7bc7eef0c029af9c73988d4ced861220af234b",
+        "file": "src/app/(main)/apps-management/_hooks/useAppFilters.ts",
+        "title": "Composable app filters with URL/query synchronization",
+        "description": "Debounced search, reset flows, and deep-linkable filters keep navigation predictable across sessions and shares. # Dipzin"
+    },
+    {
+        "id": "sitemap",
+        "repo": "dabbonet/dipzin-frontend",
+        "ref": "e4a1c1e0b68ff72f219a9822cecb667b69942573",
+        "file": "src/app/sitemap.ts",
+        "title": "Dynamic, SEO-optimized sitemap for deep content coverage",
+        "description": "Generates a comprehensive Next.js sitemap from domain data with robust guards and visibility rules, keeping search engines in sync as content scales. # Dipzin"
+    },
+    {
+        "id": "mobile-onboarding",
+        "repo": "dabbonet/dipzin-frontend",
+        "ref": "e4a1c1e0b68ff72f219a9822cecb667b69942573",
+        "file": "src/components/Account/onboarding-modal/mobile-onboarding.tsx",
+        "title": "Mobile-first onboarding modal with progressive personalization",
+        "description": "Stepwise flow with accessible controls and server-action persistence that captures interests and tailors the first-run experience. # Dipzin"
+    },
+    {
+        "id": "user-menu",
+        "repo": "dabbonet/dipzin-frontend",
+        "ref": "e4a1c1e0b68ff72f219a9822cecb667b69942573",
+        "file": "src/components/Account/user-menu/src/user-menu.tsx",
+        "title": "Session-aware account menu with secure, role-based actions",
+        "description": "Responsive user menu driven by NextAuth session state, gating sensitive routes, and providing a clean path to account settings and sign-out. # Dipzin"
+    },
+    {
+        "id": "download-screen-hook",
+        "repo": "dabbonet/dipzin-frontend",
+        "ref": "e4a1c1e0b68ff72f219a9822cecb667b69942573",
+        "file": "src/hooks/useDownloadScreen.ts",
+        "title": "Secure screen download hook with safe blob lifecycles",
+        "description": "Encapsulates auth-aware fetch, blob handling, filename inference, and object URL cleanup for cross-browser reliability. # Dipzin"
+    },
+    {
+        "id": "screen-overlay",
+        "repo": "dabbonet/dipzin-frontend",
+        "ref": "e4a1c1e0b68ff72f219a9822cecb667b69942573",
+        "file": "src/components/Shared/screen/src/screen-overlay.tsx",
+        "title": "High-performance overlay for focused screen interactions",
+        "description": "Composable overlay with keyboard dismissal, focus management, and subtle motion cues to keep users oriented while acting. # Dipzin"
+    },
+    {
+        "id": "use-category-element",
+        "repo": "dabbonet/dipzin-dashboard-next",
+        "ref": "6b7bc7eef0c029af9c73988d4ced861220af234b",
+        "file": "src/app/(main)/global-patterns/_hooks/useCategoryElement.ts",
+        "title": "Category element hook for CRUD and optimistic state",
+        "description": "Manages create/update/delete flows for global patterns with lightweight optimistic updates and error recovery. # Dipzin"
+    },
+    {
+        "id": "recent-blogs-carousel",
+        "repo": "dabbonet/study-hive",
+        "ref": "d587a06f7716a51a9d5c76b8743244a2efa87659",
+        "file": "nextjs/src/components/recent-blogs/recent-blogs.tsx",
+        "title": "Responsive, accessible carousel with custom dot navigation",
+        "description": "Embla-style, hook-driven carousel with breakpoint-aware layouts and a11y-friendly dot controls for smooth, inclusive content discovery. # Studyhive"
+    },
+    {
+        "id": "custom-hits",
+        "repo": "dabbonet/study-hive",
+        "ref": "d587a06f7716a51a9d5c76b8743244a2efa87659",
+        "file": "nextjs/src/components/hits/custom-hits.tsx",
+        "title": "Algolia search with resilient loading and error UX",
+        "description": "Implements graceful stalled/error/ready states via InstantSearch hooks, delivering a dependable search experience across devices. # Studyhive"
+    },
+    {
+        "id": "mobile-searchbar",
+        "repo": "dabbonet/study-hive",
+        "ref": "d587a06f7716a51a9d5c76b8743244a2efa87659",
+        "file": "nextjs/src/components/navbar/mobile-searchbar.tsx",
+        "title": "Mobile search bar with debounced Algolia queries",
+        "description": "InstantSearch-powered input optimized for small screens, delivering fast, relevant results without UI jank. # Studyhive"
+    },
+    {
+        "id": "apps-pagination",
+        "repo": "dabbonet/dipzin-dashboard-next",
+        "ref": "6b7bc7eef0c029af9c73988d4ced861220af234b",
+        "file": "src/app/(main)/apps-management/_components/apps-pagination.tsx",
+        "title": "Accessible, responsive pagination for dense admin tables",
+        "description": "Keyboard-friendly, ARIA-labeled pagination that adapts to screen sizes and large datasets gracefully. # Dipzin"
+    },
+    {
+        "id": "custom-pagination",
+        "repo": "dabbonet/study-hive",
+        "ref": "d587a06f7716a51a9d5c76b8743244a2efa87659",
+        "file": "nextjs/src/components/pagination/custom-pagination.tsx",
+        "title": "Custom pagination with accessibility and density controls",
+        "description": "Clear, keyboard-friendly pagination that adapts to content density and viewport size for smooth exploration. # Studyhive"
+    },
+    {
+        "id": "blog-slug-page",
+        "repo": "dabbonet/study-hive",
+        "ref": "d587a06f7716a51a9d5c76b8743244a2efa87659",
+        "file": "nextjs/src/app/blogs/[slug]/page.tsx",
+        "title": "SEO-friendly blog page with rich Open Graph metadata",
+        "description": "Static generation with dynamic fallback, resilient error/loading states, and shareable social previews. # Studyhive"
+    },
+    {
+        "id": "content-renderer",
+        "repo": "dabbonet/experience-next",
+        "ref": "dev",
+        "file": "src/components/centers/resources-center/ContentRenderer.jsx",
+        "title": "Pluggable content renderer for CMS-driven pages",
+        "description": "Maps CMS blocks to React components with guardrails, lazy loading, and fallbacks for resilient rendering. # Experience"
+    },
+    {
+        "id": "filtration-orchestrator",
+        "repo": "dabbonet/experience-next",
+        "ref": "dev",
+        "file": "src/components/integrations/filtration/Filtration.jsx",
+        "title": "End-to-end filtration orchestrator for integrations",
+        "description": "Coordinates filter state, results, and UX affordances for snappy browsing and clear resets. # Experience"
+    },
+    {
+        "id": "resources-filtration",
+        "repo": "dabbonet/experience-next",
+        "ref": "dev",
+        "file": "src/components/centers/resources-center/ResourcesFiltration.jsx",
+        "title": "Resource filtering UI with helpful empty states",
+        "description": "Search + filters with clear-reset affordances and instructive empty states to keep users on track. # Experience"
+    },
+    {
+        "id": "resources-center-page",
+        "repo": "dabbonet/experience-next",
+        "ref": "dev",
+        "file": "src/app/(centers)/resources-center/page.jsx",
+        "title": "Resources Center with server-rendered discovery UX",
+        "description": "Entry page orchestrating filters, content blocks, and SSR for fast, indexable experiences across devices. # Experience"
+    },
+    {
+        "id": "filter-list",
+        "repo": "dabbonet/experience-next",
+        "ref": "dev",
+        "file": "src/components/integrations/filtration/FilterList.jsx",
+        "title": "Composable filter list with controlled, reusable state",
+        "description": "Small, reusable filters powering integrations and resources modules with clean, predictable UX. # Experience"
+    },
+    {
+        "id": "job-filters",
+        "repo": "dabbonet/experience-next",
+        "ref": "dev",
+        "file": "src/components/job-opportunities/JobFilters.jsx",
+        "title": "Job search filters with chip UX and keyboard support",
+        "description": "Responsive, accessible filters that refine job listings without friction, optimized for mobile and desktop. # Experience"
+    },
+    {
+        "id": "blog-types",
+        "repo": "dabbonet/study-hive",
+        "ref": "d587a06f7716a51a9d5c76b8743244a2efa87659",
+        "file": "nextjs/src/types/blog.ts",
+        "title": "Typed blog models for safer, faster UI development",
+        "description": "Strong TypeScript types across blog entities reduce runtime bugs and simplify component contracts. # Studyhive"
+    },
+    {
+        "id": "copy-button",
+        "repo": "dabbonet/dipzin-frontend",
+        "ref": "e4a1c1e0b68ff72f219a9822cecb667b69942573",
+        "file": "src/components/Shared/button/CopyButton.tsx",
+        "title": "Image copy-to-clipboard with optimistic feedback",
+        "description": "Reusable button encapsulating clipboard logic and instant success/error feedback for a snappy, delightful UX. # Dipzin"
+    },
+    {
+        "id": "resource-hero",
+        "repo": "dabbonet/experience-next",
+        "ref": "dev",
+        "file": "src/components/centers/resources-center/blocks/ResourceHero.jsx",
+        "title": "Hero block with crisp CTAs and responsive media",
+        "description": "Attention-grabbing hero that adapts layout and semantics for accessibility and conversion. # Experience"
+    }
+]
