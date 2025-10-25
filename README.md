@@ -1,6 +1,6 @@
 ## Portfolio repo
 
-This is a bespoke portfolio built with Next.js, Tailwind, and Lenis smooth scrolling.
+This is a bespoke portfolio built with Next.js, Tailwind, and smooth scrolling.
 
 ### Development
 
@@ -45,7 +45,7 @@ pnpm build
 
 ### Performance + SEO considerations
 
-- Smooth scrolling now respects `prefers-reduced-motion` and lazily loads Lenis only when needed.
+- Smooth scrolling now respects `prefers-reduced-motion` and lazily loads the smooth-scroll implementation only when needed.
 - Heavy highlight code blocks render on demand so the initial bundle stays lean.
 - Navigation interactions avoid extra JavaScript dependencies, improving hydration costs.
 - Metadata includes canonical URLs, Open Graph/Twitter images, and JSON-LD for richer search snippets.

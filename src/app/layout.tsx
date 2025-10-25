@@ -3,7 +3,6 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { SmoothScrollProvider } from "@/lib/smooth-scroll/SmoothScrollProvider";
 
 const siteUrl = process.env.siteUrl || "http://localhost:3000";
 const heroImage = `${siteUrl}/me.jpg`;
@@ -123,17 +122,19 @@ export default function RootLayout({
           id="schema-person"
           type="application/ld+json"
           strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personStructuredData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personStructuredData),
+          }}
         />
         <Script
           id="schema-website"
           type="application/ld+json"
           strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteStructuredData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteStructuredData),
+          }}
         />
-        <SmoothScrollProvider>
-          {children}
-        </SmoothScrollProvider>
+        {children}
       </body>
     </html>
   );
