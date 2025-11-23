@@ -43,6 +43,25 @@ The script reads `scripts/showcase.config.json`, downloads the referenced files 
 pnpm build
 ```
 
+### Deploying to GitHub Pages ✅
+
+This repository supports deploying the static export to GitHub Pages. The workflow in `.github/workflows/deploy-gh-pages.yml` builds the site and publishes the `out` folder to the `gh-pages` branch.
+
+Notes and steps:
+
+- The project uses a conditional `basePath` and `assetPrefix` when the `GITHUB_PAGES` environment variable is set to `true`. The workflow sets this variable for the build step so your app is exported with the correct path (`/portfolio`).
+- If you prefer to host via the `docs` folder instead, change the workflow to copy `out` into `docs/` and configure Pages to use the `docs` folder on the `main` branch.
+- The action also creates an `.nojekyll` file to prevent Jekyll from processing the output and possibly removing files prefixed with `_` (like `/_next`).
+ - After you push the workflow to `main`, go to **Settings > Pages** in the GitHub repository and ensure you select the `gh-pages` branch and the `/` folder as the deployment source (the `peaceiris/actions-gh-pages` action will push to `gh-pages` automatically). GitHub Pages should then publish your site at: `https://<username>.github.io/portfolio`.
+
+To deploy manually (locally):
+
+```bash
+pnpm install
+pnpm run deploy
+# then push the 'out' content to a branch named 'gh-pages' (or use 'gh-pages' npm package)
+```
+
 ### Performance + SEO considerations
 
 - Smooth scrolling now respects `prefers-reduced-motion` and lazily loads Lenis only when needed.

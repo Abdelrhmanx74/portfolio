@@ -12,7 +12,7 @@ const projects: Project[] = [
     type: "Client Project",
     description:
       "Built a massive static site with over 70 pages packed with content and images. This required careful planning, structure, and optimization to keep everything organized and fast. Delivered a responsive UI and reusable components for smooth navigation and performance.",
-    tech: ["NextJS", "Tailwind", "Framer Motion", "NextUI"],
+    tech: ["NextJS", "Tailwind", "GSAP", "NextUI"],
     link: "https://experience.com",
   },
   {

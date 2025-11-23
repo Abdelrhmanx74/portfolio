@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import {
@@ -10,7 +10,6 @@ import {
   SheetClose,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { useSmoothScroll } from "@/lib/smooth-scroll/SmoothScrollProvider";
 
 const NAV_ITEMS = [
   { id: "experience", label: "Experience" },
@@ -24,8 +23,11 @@ export function Navigation() {
   // mobileOpen state replaced by shadcn Sheet (Radix) components
   // Desktop-only preview state to open a mobile-sized preview
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
-  const { snapToSection, currentSection, reduceMotion } = useSmoothScroll();
 
+  // active section state derived from DOM via IntersectionObserver
+  const [currentSection, setCurrentSection] = useState(0);
+
+  /* Keep header style changes responsive */
   useEffect(() => {
     let frame = 0;
     const handleScroll = () => {
@@ -43,12 +45,60 @@ export function Navigation() {
     };
   }, []);
 
-  const handleSnap = useCallback(
-    (index: number) => {
-      snapToSection(index);
-    },
-    [snapToSection],
-  );
+  // IntersectionObserver to update the current active section for the nav (no smooth scroll)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const nodes = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-scroll-section]"),
+    );
+    if (!nodes.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // pick the entry with the largest intersectionRatio
+        let bestIndex = -1;
+        let bestRatio = 0;
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio > bestRatio) {
+            bestRatio = entry.intersectionRatio;
+            bestIndex = nodes.indexOf(entry.target as HTMLElement);
+          }
+        });
+        if (bestIndex >= 0) {
+          setCurrentSection(bestIndex);
+        }
+      },
+      { threshold: [0.25, 0.5, 0.75] },
+    );
+
+    nodes.forEach((n) => observer.observe(n));
+    const onResize = () => {
+      // re-evaluate active section on resize
+      const viewportCenter = window.innerHeight / 2;
+      let bestIdx = 0;
+      let bestDistance = Number.POSITIVE_INFINITY;
+      nodes.forEach((n, i) => {
+        const rect = n.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const distance = Math.abs(center - viewportCenter);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestIdx = i;
+        }
+      });
+      setCurrentSection(bestIdx);
+    };
+
+    onResize();
+    window.addEventListener("resize", onResize);
+    window.addEventListener("orientationchange", onResize);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("orientationchange", onResize);
+    };
+  }, []);
 
   const navItems = useMemo(() => NAV_ITEMS, []);
 
@@ -62,27 +112,28 @@ export function Navigation() {
       data-testid="header-navigation"
     >
       <div className="max-w-5xl mx-auto px-6 py-3 flex items-center relative">
-        <button
-          type="button"
-          onClick={() => handleSnap(0)}
+        <a
+          href="#hero"
           className="text-base md:text-sm hover-elevate active-elevate-2 px-2 py-1 transition-colors font-bold"
           data-testid="button-logo"
         >
           [AM]
-        </button>
+        </a>
 
-        <nav className="hidden md:flex items-center gap-4 text-xs absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <nav
+          className="hidden md:flex items-center gap-4 text-xs absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          role="navigation"
+        >
           {navItems.map((item, index) => (
-            <button
+            <a
               key={item.id}
-              type="button"
-              onClick={() => handleSnap(index + 1)}
+              href={`#${item.id}`}
               className={`relative px-3 py-1 font-medium transition-all duration-200 hover:bg-accent/70 hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${currentSection === index + 1 ? "font-semibold bg-accent/90 text-accent-foreground" : ""}`}
-              aria-current={currentSection === index + 1}
+              aria-current={currentSection === index + 1 ? "page" : undefined}
               data-testid={`link-${item.id}`}
             >
               {item.label}
-            </button>
+            </a>
           ))}
         </nav>
         <Button
@@ -106,26 +157,18 @@ export function Navigation() {
               {/* Provide an accessible title for the Dialog (visually hidden) to satisfy Radix a11y checks */}
               <SheetTitle className="sr-only">Navigation</SheetTitle>
               <div className="px-6 py-4 flex flex-col gap-2">
-                {navItems.map((item, index) => (
+                {navItems.map((item) => (
                   <SheetClose asChild key={item.id}>
                     <Button
-                      variant={
-                        currentSection === index + 1 ? "secondary" : "ghost"
-                      }
+                      asChild
+                      variant="ghost"
                       className="w-full justify-start text-base py-2 px-3 rounded-lg font-medium"
-                      onClick={() => handleSnap(index + 1)}
                       data-testid={`mobile-link-${item.id}`}
                     >
-                      {item.label}
+                      <a href={`#${item.id}`}>{item.label}</a>
                     </Button>
                   </SheetClose>
                 ))}
-                {reduceMotion && (
-                  <p className="text-xs text-muted-foreground/80 mt-2">
-                    Motion effects are reduced to respect your accessibility
-                    settings.
-                  </p>
-                )}
               </div>
             </SheetContent>
           </Sheet>

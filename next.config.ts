@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
+
 const nextConfig: NextConfig = {
   // Enable static export for maximum performance
   output: 'export',
@@ -36,6 +38,10 @@ const nextConfig: NextConfig = {
 
   // Optimize production builds
   poweredByHeader: false,
+  // GitHub Pages: when set, add basePath and assetPrefix to route assets correctly
+  basePath: isGithubPages ? '/portfolio' : '',
+  assetPrefix: isGithubPages ? '/portfolio' : '',
+  trailingSlash: true,
 };
 
 export default nextConfig;
