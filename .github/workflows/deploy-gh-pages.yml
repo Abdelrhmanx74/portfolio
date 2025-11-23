@@ -7,7 +7,7 @@ on:
  
 # Ensure the workflow has the permissions needed to push to the repo/pages
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -18,10 +18,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          # ensure checkout uses the token we provide so pushes are authenticated
-          persist-credentials: true
-          token: ${{ secrets.GH_PAGES_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -42,16 +38,30 @@ jobs:
           siteUrl: 'https://abdelrhmanx74.github.io/portfolio'
         run: pnpm run deploy
 
-      - name: Create .nojekyll to avoid Jekyll processing
-        run: touch out/.nojekyll
+      - name: Prepare `out` directory for Pages
+        run: |
+          set -eux
+          # Create out dir
+          mkdir -p out
+          # Move generated static files into out. Next with `output: export` may write files at repo root
+          # Move common exported entries if they exist; ignore missing files
+          mv _next out/ || true
+          mv 404 out/ || true
+          mv 404.html out/ || true
+          mv index.html out/ || true
+          mv index.txt out/ || true
+          mv favicon.ico out/ || true
+          # Move any PDFs or images exported to root
+          mv *.pdf out/ || true
+          mv *.jpg out/ || true
+          # Ensure .nojekyll exists
+          touch out/.nojekyll
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          # Prefer a user-generated PAT stored in `GH_PAGES_TOKEN` (repo secret)
-          # Fallback to the automatic GITHUB_TOKEN when the secret is not set.
-          github_token: ${{ secrets.GH_PAGES_TOKEN || secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-          # Optional: keep publishing history
-          keep_files: false
+          path: ./out
+
+      - name: Deploy to GitHub Pages (official)
+        uses: actions/deploy-pages@v1
 
