@@ -3,6 +3,13 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
+ 
+# Ensure the workflow has the permissions needed to push to the repo/pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
@@ -11,6 +18,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # ensure checkout uses the token we provide so pushes are authenticated
+          persist-credentials: true
+          token: ${{ secrets.GH_PAGES_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -37,7 +48,9 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Prefer a user-generated PAT stored in `GH_PAGES_TOKEN` (repo secret)
+          # Fallback to the automatic GITHUB_TOKEN when the secret is not set.
+          github_token: ${{ secrets.GH_PAGES_TOKEN || secrets.GITHUB_TOKEN }}
           publish_dir: ./out
           # Optional: keep publishing history
           keep_files: false
