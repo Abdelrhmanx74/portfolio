@@ -4,9 +4,11 @@ import type { ReactNode } from "react";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll.client";
+import { asset, absoluteAsset, SITE } from '@/lib/asset';
 
-const siteUrl = process.env.siteUrl || "http://localhost:3000";
-const heroImage = `${siteUrl}/me.jpg`;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.siteUrl || SITE;
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const heroImage = absoluteAsset('/me.jpg');
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
     siteName: "Abdelrhman Mahmoud Portfolio",
     images: [
       {
-        url: "/me.jpg",
+        url: absoluteAsset('/me.jpg'),
         width: 1200,
         height: 630,
         alt: "Abdelrhman Mahmoud smiling in front of a neutral background",
@@ -61,7 +63,7 @@ export const metadata: Metadata = {
     title: "Abdelrhman Mahmoud | Frontend Developer",
     description:
       "Frontend developer specializing in React, Next.js, and TypeScript",
-    images: ["/me.jpg"],
+    images: [absoluteAsset('/me.jpg')],
   },
   robots: {
     index: true,

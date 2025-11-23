@@ -1,3 +1,5 @@
+import { asset } from "@/lib/asset";
+
 interface ContactMethod {
   label: string;
   value: string;
@@ -58,25 +60,32 @@ export function Contact() {
         </h2>
 
         <div className="space-y-6">
-          {contactMethods.map((method) => (
-            <a
-              key={method.label}
-              href={method.href}
-              target={method.href.startsWith("http") || method.href.endsWith('.pdf') || method.label === 'Resume' ? "_blank" : undefined}
-              rel={method.href.startsWith("http") || method.href.endsWith('.pdf') || method.label === 'Resume' ? "noopener noreferrer" : undefined}
-              className="block border-l-2 border-border pl-6 hover-elevate transition-all"
-              data-testid={method.testId}
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                <span className="text-xs sm:text-sm text-muted-foreground w-24" data-testid={`text-${method.testId}-label`}>
-                  {method.label}:
-                </span>
-                <span className="text-xs sm:text-sm underline decoration-dotted" data-testid={`text-${method.testId}-value`}>
-                  {method.label === 'Phone' ? formatPhone(method.value) : method.value}
-                </span>
-              </div>
-            </a>
-          ))}
+          {contactMethods.map((method) => {
+            let href = method.href;
+            if (href.startsWith('/') && !href.startsWith('//')) {
+              href = asset(href);
+            }
+
+            return (
+              <a
+                key={method.label}
+                href={href}
+                target={href.startsWith("http") || href.endsWith('.pdf') || method.label === 'Resume' ? "_blank" : undefined}
+                rel={href.startsWith("http") || href.endsWith('.pdf') || method.label === 'Resume' ? "noopener noreferrer" : undefined}
+                className="block border-l-2 border-border pl-6 hover-elevate transition-all"
+                data-testid={method.testId}
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                  <span className="text-xs sm:text-sm text-muted-foreground w-24" data-testid={`text-${method.testId}-label`}>
+                    {method.label}:
+                  </span>
+                  <span className="text-xs sm:text-sm underline decoration-dotted" data-testid={`text-${method.testId}-value`}>
+                    {method.label === 'Phone' ? formatPhone(method.value) : method.value}
+                  </span>
+                </div>
+              </a>
+            );
+          })}
         </div>
 
         {/* Resume is now included as a contact pill above the email */}

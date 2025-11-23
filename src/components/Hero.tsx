@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { asset } from "@/lib/asset";
 
 export function Hero() {
   return (
@@ -14,7 +15,7 @@ export function Hero() {
               <h1 className="text-2xl font-bold mb-4">Abdelrhman Mahmoud</h1>
               <div className="w-60 h-60 md:w-48 md:h-48 bg-muted border border-border flex items-center justify-center text-6xl overflow-hidden rounded-full">
                 <Image
-                  src="/me.jpg"
+                  src={asset('/me.jpg')}
                   alt="Abdelrhman Mahmoud - Frontend Developer"
                   width={220}
                   height={220}
@@ -32,7 +33,7 @@ export function Hero() {
             {/* Desktop: original layout */}
             <div className="w-32 h-32 md:w-40 md:h-40 bg-muted border border-border hidden sm:flex items-center justify-center text-6xl overflow-hidden">
               <Image
-                src="/me.jpg"
+                src={asset('/me.jpg')}
                 alt="Abdelrhman Mahmoud - Frontend Developer"
                 width={160}
                 height={160}

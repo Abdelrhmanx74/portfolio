@@ -42,6 +42,10 @@ const nextConfig: NextConfig = {
   basePath: isGithubPages ? '/portfolio' : '',
   assetPrefix: isGithubPages ? '/portfolio' : '',
   trailingSlash: true,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGithubPages ? '/portfolio' : '',
+    NEXT_PUBLIC_SITE_URL: process.env.SITE_URL || '',
+  },
 };
 
 export default nextConfig;
