@@ -18,6 +18,12 @@ function formatPhone(raw: string) {
 
 const contactMethods: ContactMethod[] = [
   {
+    label: "Resume",
+    value: "View resume",
+    href: "/resume.pdf",
+    testId: "link-resume"
+  },
+  {
     label: "Email",
     value: "abdelrhmanx74@gmail.com",
     href: "mailto:abdelrhmanx74@gmail.com",
@@ -56,8 +62,8 @@ export function Contact() {
             <a
               key={method.label}
               href={method.href}
-              target={method.href.startsWith("http") ? "_blank" : undefined}
-              rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              target={method.href.startsWith("http") || method.href.endsWith('.pdf') || method.label === 'Resume' ? "_blank" : undefined}
+              rel={method.href.startsWith("http") || method.href.endsWith('.pdf') || method.label === 'Resume' ? "noopener noreferrer" : undefined}
               className="block border-l-2 border-border pl-6 hover-elevate transition-all"
               data-testid={method.testId}
             >
@@ -72,6 +78,8 @@ export function Contact() {
             </a>
           ))}
         </div>
+
+        {/* Resume is now included as a contact pill above the email */}
 
         <div className="mt-8 pt-8 border-t border-border">
           <p className="text-xs sm:text-sm text-muted-foreground text-center" data-testid="text-footer-copyright">

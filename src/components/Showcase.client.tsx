@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-const CodeBlock = dynamic(() => import("@/components/ui/CodeBlock"), {
+const CodeBlock = dynamic(() => import("@/components/CodeBlock"), {
     ssr: false,
     loading: () => (
         <div className="p-6 text-xs text-muted-foreground">Loading snippet…</div>
@@ -80,12 +80,12 @@ export default function ShowcaseClient({ highlights }: ShowcaseClientProps) {
         setOpen(true);
     };
 
-    const stepSelection = (step: 1 | -1) => {
+    const stepSelection = useCallback((step: 1 | -1) => {
         if (selectedIndex === null) return;
         const nextIndex = selectedIndex + step;
         if (nextIndex < 0 || nextIndex >= highlights.length) return;
         setSelectedIndex(nextIndex);
-    };
+    }, [selectedIndex, highlights.length]);
 
 
     // Keyboard navigation for dialog
@@ -102,7 +102,7 @@ export default function ShowcaseClient({ highlights }: ShowcaseClientProps) {
         };
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [open, selectedIndex, highlights.length]);
+    }, [open, selectedIndex, highlights.length, stepSelection]);
 
     if (!highlights.length) {
         return null;

@@ -10,9 +10,7 @@ type Props = {
     language?: Language | any
 }
 
-
 export function CodeBlock({ code, language = "tsx" }: Props) {
-
     return (
         <Highlight {...(defaultProps as any)} theme={theme} code={code} language={language as any}>
             {(renderProps: any) => {

@@ -1,4 +1,3 @@
-import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
@@ -13,7 +12,6 @@ export const revalidate = false;
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Navigation />
       <main className="pt-12">
         <Hero />
         <Experience />

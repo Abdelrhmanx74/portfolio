@@ -36,7 +36,6 @@ export default function SmoothScroll({ children }: Props) {
         // Smooth scroll values
         let targetY = 0;
         let currentY = 0;
-        let height = 0;
         let rafId: number | null = null;
 
         const onScroll = () => {
