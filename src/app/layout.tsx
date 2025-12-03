@@ -5,10 +5,10 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll.client";
 import Analytics from "@/components/Analytics.client";
-import { asset, absoluteAsset, SITE } from "@/lib/asset";
+import { absoluteAsset, SITE } from "@/lib/asset";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.siteUrl || SITE;
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const heroImage = absoluteAsset("/me.jpg");
 
 const jetbrainsMono = JetBrains_Mono({

@@ -60,14 +60,15 @@ export function trackEvent(eventName: string, params?: Record<string, any>) {
 export default function Analytics(): React.ReactElement | null {
   const pathname = usePathname();
 
-  // If no GA ID is present, render nothing (no-op).
-  if (!GA_ID) return null;
-
   // Send a page_view whenever the pathname changes (SPA navigation)
   useEffect(() => {
+    // If no GA ID is present, skip any gtag-related work
+    if (!GA_ID) return;
+
     // Wait until gtag is available
     if (ensureGtag()) {
       pageview(pathname || window.location.pathname);
+      return;
     } else {
       // In rare cases gtag may not be ready yet; poll briefly (simple approach).
       let mounted = true;
@@ -85,6 +86,9 @@ export default function Analytics(): React.ReactElement | null {
       };
     }
   }, [pathname]);
+
+  // If no GA ID is present, render nothing (no-op).
+  if (!GA_ID) return null;
 
   return (
     <>
